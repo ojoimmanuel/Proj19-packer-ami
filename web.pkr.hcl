@@ -11,15 +11,15 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 # source.
 source "amazon-ebs" "terraform-web-prj-19" {
   ami_name      = "terraform-web-prj-19-${local.timestamp}"
-  instance_type = "t2.micro"
+  instance_type = "t2.small"
   region        = var.region
   source_ami_filter {
     filters = {
-      name                = "RHEL-8.2_HVM-20200803-x86_64-0-Hourly2-GP2"
+      name                = "RHEL-9.3.0_HVM-20231101-x86_64-5-Hourly2-GP2"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
-    most_recent = true
+    most_recent = false
     owners      = ["309956199498"]
   }
   ssh_username = "ec2-user"
